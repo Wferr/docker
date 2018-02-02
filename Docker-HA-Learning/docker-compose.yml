@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  hastebin01:
+    image: wferr/haste-bin
+    volumes:
+      - ./hastebin:/etc/redis/
+
+  hastebin02:
+    image: wferr/haste-bin
+    volumes:
+      - ./hastebin:/etc/redis/
+
+  proxy:
+    image: haproxy:alpine
+    links:
+      - hastebin01
+      - hastebin02
+    ports:
+      - 80:80
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+
