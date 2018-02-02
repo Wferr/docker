@@ -1,5 +1,5 @@
 FROM node:alpine
-ENV node_env production
+ENV NODE_ENV production
 RUN apk --no-cache add redis git
 RUN git clone https://github.com/seejohnrun/haste-server.git /haste-server
 RUN apk del git

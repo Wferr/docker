@@ -1,0 +1,21 @@
+version: '3'
+services:
+  haste-bin:
+    image: wferr/haste-bin
+    ports:
+      - "7777:7777"
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes: 
+      - web:/usr/share/nginx/html
+  sftp:
+    image: atmoz/sftp
+    volumes:
+        - web:/home/foo/upload
+    ports:
+        - "2222:22"
+    command: foo:pass:1001
+volumes:
+  web:
