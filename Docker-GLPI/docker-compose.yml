@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  glpi:
+    image: turgon37/glpi
+    ports:
+      - 8080:80
+    volumes:
+      - glpi-files:/var/www/files
+      - glpi-config:/var/www/config
+    links:
+      - sql
+
+  sql:
+    image: mariadb
+    volumes:
+      - sql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secure
+
+volumes:
+  glpi-files:
+  glpi-config:
+  sql:

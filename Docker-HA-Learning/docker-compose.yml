@@ -2,16 +2,15 @@ version: '3'
 
 services:
 
-  hastebin01:
-    image: wferr/haste-bin
+  nginx1:
+    image:  nginx:alpine
     volumes:
-      - ./hastebin:/etc/redis/
+      - ./var-www:/usr/share/nginx/html
 
-  hastebin02:
-    image: wferr/haste-bin
+  nginx1:
+    image: nginx:alpine
     volumes:
-      - ./hastebin:/etc/redis/
-
+      - ./var-www:/usr/share/nginx/html
   proxy:
     image: haproxy:alpine
     links:
@@ -20,5 +19,5 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./haproxy:/usr/local/etc/haproxy
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
 
